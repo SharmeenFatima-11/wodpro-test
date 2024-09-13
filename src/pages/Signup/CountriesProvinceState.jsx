@@ -14,48 +14,51 @@ const CountriesProvinceState = ({
   const [provinceList, setProvinceList] = useState([]);
   const [cityList, setCityList] = useState([]);
   const [spanishCountries, setSpanishCountries] = useState([
-    "Spain",
-    // "Mexico",
-    // "Costa Rica",
-    // "El Salvador",
-    // "Guatemala",
-    // "Honduras",
-    // "Nicaragua",
-    // "Panama",
-    // "Cuba",
-    // "Dominican Republic",
-    // "Puerto Rico",
-    // "Argentina",
-    // "Bolivia",
-    // "Chile",
-    // "Colombia",
-    // "Ecuador",
-    // "Paraguay",
-    // "Peru",
-    // "Uruguay",
-    // "Venezuela",
+    {name:"Spain",isoCode:"ES"},
+    {name:"Argentina",isoCode:"AR"},
+    {name:"México",isoCode:"MX"},
+    {name:"Colombia",isoCode:"CO"},
+    {name:"Perú",isoCode:"PE"},
+    {name:"Venezuela",isoCode:"VE"},
+    {name:"Chile",isoCode:"CL"},
+    {name:"Ecuador",isoCode:"EC"},
+    {name:"Guatemala",isoCode:"GT"},
+    {name:"Cuba",isoCode:"CU"},
+    {name:"Bolivia",isoCode:"BO"},
+    {name:"República Dominicana",isoCode:"DO"},
+    {name:"Honduras",isoCode:"HN"},
+    {name:"Paraguay",isoCode:"PY"},
+    {name:"El Salvador",isoCode:"SV"},
+    {name:"Nicaragua",isoCode:"NI"},
+    {name:"Costa Rica",isoCode:"CR"},
+    {name:"Puerto Rico",isoCode:"PR"},
+    {name:"Panamá",isoCode:"PA"},
+    {name:"Uruguay",isoCode:"UY"},
+   
     // "Equatorial Guinea",
   ]);
 
-  // Fetch countries
-  const fetchCountries = async () => {
-    try {
-      let allCountries = Country.getAllCountries();
+  // // Fetch countries
+  // const fetchCountries = async () => {
+  //   try {
+      
+  //     let allCountries = Country.getAllCountries();
 
-      // Filter out Spanish-speaking countries by name
-      const filteredCountries = allCountries.filter((country) =>
-        spanishCountries.includes(country.name)
-      );
-      setSpanishCountries(filteredCountries);
-    } catch (error) {
-      console.error("Error fetching countries:", error);
-    }
-  };
+  //     // Filter out Spanish-speaking countries by name
+  //     const filteredCountries = allCountries.filter((country) =>
+  //       spanishCountries.includes(country.name)
+  //     );
+  //     console.log("filtered countries are", filteredCountries)
+  //     setSpanishCountries(filteredCountries);
+  //   } catch (error) {
+  //     console.error("Error fetching countries:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    console.log("in fetch countries");
-    fetchCountries();
-  }, []);
+  // useEffect(() => {
+  //   console.log("in fetch countries");
+  //   fetchCountries();
+  // }, []);
 
   // fetch provinces
   const fetchProvinces = async () => {
@@ -69,7 +72,9 @@ const CountriesProvinceState = ({
   // fetch cities
   const fetchCities = async () => {
     try {
+        
         const States = City.getCitiesOfState(pais.id, provincia.id);
+        console.log("States are", States)
         setCityList(States);
      
     } catch (error) {
@@ -80,7 +85,7 @@ const CountriesProvinceState = ({
     console.log("in fetch cities");
     if (provincia && provincia.id) {
       console.log("in fetch citiesss");
-    //   fetchCities();
+      fetchCities();
     }
   }, [provincia]);
 
